@@ -12,6 +12,10 @@
 <script>
 
 import StateExtractor from './classes/StateExtractor';
+import GameEventHandler from './classes/GameEventHandler';
+import HueAction from './classes/hue/HueAction';
+
+
 const http = require('http');
 export default {
   name: 'csgo-gue',
@@ -20,10 +24,13 @@ export default {
       server: null,
       data: null,
       lastState: '',
+      gameEventHandler: null,
     };
   },
   mounted() {
     this.createHttpServer();
+    this.gameEventHandler = new GameEventHandler(new HueAction());
+    setTimeout(() => { this.gameEventHandler.startup(); }, 1000);
   },
   computed: {
     defaultComputed() {
@@ -61,6 +68,7 @@ export default {
     handleGameData() {
       this.lastState = StateExtractor.extract(this.data);
       console.log(this.lastState);
+      this.gameEventHandler.handleGameData(this.lastState);
     },
   },
 };
