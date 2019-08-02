@@ -8,8 +8,8 @@ export default class GameEventHandler {
   handleEvent(state) {
     console.log(`Game event Handling state: ${state}`);
 
-    if (this.prev_state !== state) {
-      this.prev_state = state;
+    if (this.prev_state === state) {
+      console.log('prev state match');
       return;
     }
 

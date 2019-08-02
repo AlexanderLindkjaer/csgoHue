@@ -68,7 +68,7 @@ export default {
     handleGameData() {
       this.lastState = StateExtractor.extract(this.data);
       console.log(this.lastState);
-      this.gameEventHandler.handleGameData(this.lastState);
+      this.gameEventHandler.handleEvent(this.lastState);
     },
   },
 };
