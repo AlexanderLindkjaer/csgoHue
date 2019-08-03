@@ -3,6 +3,7 @@ dist/electron/*
 dist/web/*
 build/*
 !build/icons
+!build/csgo-hue-darwin-x64
 node_modules/
 npm-debug.log
 npm-debug.log.*
