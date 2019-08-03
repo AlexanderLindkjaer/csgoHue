@@ -26,6 +26,7 @@
     import StateExtractor from './classes/StateExtractor';
     import GameEventHandler from './classes/GameEventHandler';
     import HueAction from './classes/hue/HueAction';
+
     const Store = require('electron-store');
     const http = require('http');
 
@@ -44,7 +45,6 @@
         };
       },
       mounted() {
-        console.log('dispatch');
         this.createHttpServer();
         this.setupHueConnection();
       },
@@ -119,13 +119,14 @@
               return;
             }
             const postDataObject = JSON.parse(body);
-            this.data = postDataObject;
+            this.$store.dispatch('setGameData', postDataObject);
             this.handleGameData();
           });
         },
         handleGameData() {
-          const state = StateExtractor.extract(this.data);
-          this.$store.dispatch('setGameData', state);
+          const state = StateExtractor.extract(this.game_data);
+          console.log('handle game data: ', state);
+          this.$store.dispatch('setCurrentState', state);
         },
         handleNewGameEvent() {
           console.log('watch working');
