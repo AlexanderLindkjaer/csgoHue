@@ -1,0 +1,78 @@
+body{
+  height: 100vh;
+
+  #app{
+    height: 100%;
+    margin: 0;
+  }
+
+  .main{
+    overflow: scroll;
+    padding: 30px;
+  }
+
+  .logo-wrapper{
+    display: flex;
+    justify-content: center;
+
+    #logo1,#logo2{
+      height: 100px;
+      width: auto;
+      display: inline-block;
+    }
+
+  }
+
+
+
+  .menu{
+
+  .menu-list{
+    a{
+      color: white;
+      &:hover{
+        background-color: #565656;
+        cursor: pointer;
+      }
+    }
+
+    .router-link-exact-active{
+      background-color: #808080;
+    }
+
+  }
+
+    padding: 30px 15px;
+
+    ul{
+      li{
+        margin-bottom: 10px;
+        color: lightgrey;
+      }
+    }
+
+  }
+
+  .state-control{
+    padding-top: 3rem;
+  }
+
+  .creds{
+    font-size: 0.5rem;
+    position: fixed;
+    bottom: 1%;
+    color: white;
+    right: 5px;
+    text-align: right;
+    span{
+      display: block;
+    }
+  }
+
+
+}
+
+.mt-3{
+  margin-top: 3rem;
+}
+

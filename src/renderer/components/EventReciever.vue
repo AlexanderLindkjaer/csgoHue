@@ -1,59 +1,40 @@
 <template>
-    <div>
-        <div></div>
+    <div class="has-text-light">
         <div>
-            <p>{{data}}</p>
+            <h1 class="is-size-3">{{current_state}}</h1>
+        </div>
+        <div>
+            <p class="is-size-7">{{game_data}}</p>
+        </div>
+        <div>
+            <system-information></system-information>
         </div>
     </div>
 </template>
 
 <script>
 
-    const http = require('http');
+    import { mapGetters } from 'vuex';
+    import SystemInformation from './LandingPage/SystemInformation';
 
     export default {
+      components: { SystemInformation },
       props: [],
       data() {
         return {
-          server: null,
-          data: null,
+          default: null,
         };
       },
       mounted() {
-        this.createHttpServer();
       },
       computed: {
-        defaultComputed() {
-          return '';
-        },
+        ...mapGetters([
+          'game_data',
+          'current_state',
+        ]),
       },
       methods: {
-        createHttpServer() {
-          this.server = http.createServer((req, res) => {
-            const route = req.url;
-            console.log(route);
-            if (route === '/csgo' && req.method === 'POST') {
-              this.collectRequestData(req);
-            }
 
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(route);
-            res.end();
-          }).listen(8080);
-        },
-        collectRequestData(request) {
-          let body = '';
-          request.on('data', (chunk) => {
-            body += chunk;
-          });
-          request.on('end', () => {
-            if (!body) {
-              return;
-            }
-            const postDataObject = JSON.parse(body);
-            this.data = postDataObject;
-          });
-        },
       },
     };
 </script>

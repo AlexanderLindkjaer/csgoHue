@@ -4,12 +4,15 @@ import HueConnection from './HueConnection';
 const hue = require('node-hue-api');
 
 export default class HueAction {
-  constructor() {
-    this.api = new HueConnection().getConnection();
+  constructor(ip, username) {
+    this.hueConnection = new HueConnection(ip, username);
+    this.api = this.hueConnection.getConnection();
     this.state = hue.lightState.create();
   }
 
   singleLightsAction(light, state) {
+    if (!this.api) return;
+
     this.api.setGroupLightState(light, state)
       .then((result) => {
         console.log(result);
@@ -21,6 +24,8 @@ export default class HueAction {
   }
 
   allLightsAction(state) {
+    if (!this.api) return;
+
     this.api.setGroupLightState(0, state)
       .then((result) => {
         console.log(result);
@@ -29,6 +34,14 @@ export default class HueAction {
         throw error;
       })
       .done();
+  }
+
+  searchBridge() {
+    return this.hueConnection.searchBridge();
+  }
+
+  getCreds() {
+    return this.hueConnection.getCreds();
   }
 
   test() {
@@ -45,14 +58,15 @@ export default class HueAction {
     }, 1000);
   }
 
-  blink(sleep, transitionTime, x, y) {
-    const stateOn = hue.lightState.create().off().on(true).bri(254)
-      .sat(254)
+  blink(sleep, transitionTime, x, y, bri = 254, sat = 254) {
+    const stateOn = hue.lightState.create().off().bri(bri)
+      .sat(sat)
       .xy(x, y)
-      .transitionTime(transitionTime);
+      .transitionTime(transitionTime)
+      .on(true);
     this.allLightsAction(stateOn);
     setTimeout(() => {
-      this.allLightsAction(this.state.off().transitionTime(transitionTime));
+      this.allLightsAction(this.state.transitionTime(transitionTime).off());
     }, sleep);
   }
 
@@ -62,32 +76,40 @@ export default class HueAction {
   }
 
   default() {
-    const state = hue.lightState.create().off().on(true).white(350, 20)
-      .transitionTime(1);
+    const state = hue.lightState.create().off().white(350, 20)
+      .effect('none')
+      .on(true)
+      .transitionTime(2);
     this.allLightsAction(state);
   }
 
   explode() {
-    const state = hue.lightState.create().off().on(true).bri(254)
+    const state = hue.lightState.create().off().bri(254)
       .sat(254)
       .xy(0.5546, 0.4111)
-      .transitionTime(1);
+      .effect('none')
+      .on(true)
+      .transitionTime(2);
     this.allLightsAction(state);
   }
 
   freeze() {
-    const state = hue.lightState.create().off().on(true).bri(254)
+    const state = hue.lightState.create().off().bri(254)
       .sat(254)
       .xy(0.1557, 0.1454)
-      .transitionTime(1);
+      .effect('none')
+      .on(true)
+      .transitionTime(2);
     this.allLightsAction(state);
   }
 
   defuse() {
-    const state = hue.lightState.create().off().on(true).bri(254)
+    const state = hue.lightState.create().off().bri(254)
       .sat(254)
       .xy(0.1955, 0.6808)
-      .transitionTime(1);
+      .effect('none')
+      .on(true)
+      .transitionTime(2);
     this.allLightsAction(state);
   }
 

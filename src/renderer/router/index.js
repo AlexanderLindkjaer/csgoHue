@@ -11,6 +11,11 @@ export default new Router({
       component: require('@/components/LandingPage').default,
     },
     {
+      path: '/event-receiver',
+      name: 'event-receiver',
+      component: require('@/components/EventReciever').default,
+    },
+    {
       path: '*',
       redirect: '/',
     },

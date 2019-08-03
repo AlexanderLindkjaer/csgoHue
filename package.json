@@ -24,7 +24,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bulma": "^0.7.5",
+    "electron-store": "^4.0.0",
     "node-hue-api": "^2.4.6",
+    "tiny-timer": "^1.4.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
