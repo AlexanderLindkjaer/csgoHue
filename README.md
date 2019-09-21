@@ -42,4 +42,3 @@ For windows, se other guides.
 
 ## Other guides
 https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration
-g
