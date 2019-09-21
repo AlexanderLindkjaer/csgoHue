@@ -38,7 +38,7 @@ open .
 ```
 and place the gamestate_integration_wecode.cfg file in the finder window.
 
-For windows, se other guides.
+For windows, see other guides.
 
 ## Other guides
 https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration
