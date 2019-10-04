@@ -42,5 +42,5 @@ For windows, see other guides.
 https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration
 g
 
-##Extend Game Events
+## Extend Game Events
 If you want to extend the events the local server listens for, remember to update the .cfg file. This file is what determines wich evetns are sent from counterstrike.
