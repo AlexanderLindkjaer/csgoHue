@@ -23,7 +23,7 @@
     "postinstall": "npm run lint:fix"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bulma": "^0.7.5",
     "electron-store": "^4.0.0",
     "node-hue-api": "^2.4.6",
