@@ -1,6 +1,6 @@
 # csgo-hue
 
-Electron app for capturing csgo game events and triggering Hue lights based on game events
+Electron app for capturing csgo game events and triggering Hue lights based on them.
 
 #### Build Setup
 
